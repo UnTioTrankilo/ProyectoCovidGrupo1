@@ -12,6 +12,7 @@ package entornos.model.entities;
 public class Usuario {
 
     private int id;
+    private String nombreCompleto;
     private String correo;
     private String contrasena;
     private char ocupacion;
@@ -19,6 +20,10 @@ public class Usuario {
 
     public int getId() {
         return id;
+    }
+
+    public String getNombreCompleto() {
+        return nombreCompleto;
     }
 
     public String getCorreo() {
@@ -37,12 +42,11 @@ public class Usuario {
         return contagio;
     }
 
-    public Usuario(int id, String correo, String contrasena, char ocupacion, char contagio) {
-        this.id = id;
+    public Usuario(String nombreCompleto, String correo, String contrasena, char ocupacion) {
+        this.nombreCompleto = nombreCompleto;
         this.correo = correo;
         this.contrasena = contrasena;
         this.ocupacion = ocupacion;
-        this.contagio = contagio;
     }
 
     public Usuario() {

@@ -5,27 +5,34 @@
  */
 package entornos.controller;
 
-import entornos.view.Main;
+import entornos.model.connection.Conexion;
+import entornos.view.Login;
 import entornos.view.Registro;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 /**
  *
  * @author Adolfo
  */
-public class ControllerMain {
+public class ControllerLogin {
 
-    private Main vistaPrinc;
+    private Login vistaPrinc;
     private Registro vistaRegistro;
     
     private ControllerRegistro controladorRegistro = new ControllerRegistro();
     private String rutaImagen = ".//src//main//java//entornos//resources//PortadaNotificador.png";
 
-    public ControllerMain() {
-        vistaPrinc = new Main();
+    public ControllerLogin() {
+        vistaPrinc = new Login();
     }
 
-    public void setVentanaInicio(Main vistaPrinc) {
+    public void setVentanaInicio(Login vistaPrinc) {
         this.vistaPrinc = vistaPrinc;
         setFrame();
         vistaPrinc.setVisible(true);
@@ -54,7 +61,23 @@ public class ControllerMain {
     }
     
     private void botonAccederActionPerformed() {                                         
-        System.out.println("Acceder");
+        String sql = "SELECT * FROM usuario WHERE correo=?";
+        try (PreparedStatement ps = Conexion.abrirConexion().prepareStatement(sql);) {
+            ps.setString(1, vistaPrinc.getCajaCorreo().getText());
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                if (rs.getString("contrasena").equals(String.valueOf(vistaPrinc.getCajaContrasena().getPassword()))){
+                    System.out.println("wenaaa");
+                } else {
+                    vistaPrinc.getLabelError().setText("La contraseña que has introducido es incorrecta.");
+                }
+            } else {
+                vistaPrinc.getLabelError().setText("No existe ningún usuario con este correo asociado.");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ControllerLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }  
     
     private void botonRegistrarActionPerformed() {    

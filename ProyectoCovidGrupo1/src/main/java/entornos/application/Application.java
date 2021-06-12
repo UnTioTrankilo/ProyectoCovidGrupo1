@@ -5,8 +5,8 @@
  */
 package entornos.application;
 
-import entornos.controller.ControllerMain;
-import entornos.view.Main;
+import entornos.controller.ControllerLogin;
+import entornos.view.Login;
 
 /**
  *
@@ -14,8 +14,8 @@ import entornos.view.Main;
  */
 public class Application {
     public static void main(String[] args) {
-        ControllerMain controlador = new ControllerMain();
-        Main vista = new Main();
+        ControllerLogin controlador = new ControllerLogin();
+        Login vista = new Login();
         controlador.setVentanaInicio(vista);
     }
 }

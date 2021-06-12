@@ -5,14 +5,11 @@
  */
 package entornos.controller;
 
-import entornos.model.connection.Conexion;
-import entornos.view.Main;
+import entornos.model.dao.UsuariosDAO;
+import entornos.model.entities.Usuario;
+import entornos.view.Login;
 import entornos.view.Registro;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,8 +19,9 @@ import javax.swing.JOptionPane;
 public class ControllerRegistro {
 
     private Registro vistaRegistro;
-    private Main vistaPrinc;
-    private ControllerMain controladorMain;
+    private Login vistaPrinc;
+    private ControllerLogin controladorMain;
+    private UsuariosDAO usuariosDAO = new UsuariosDAO();
 
     public ControllerRegistro() {
         vistaRegistro = new Registro();
@@ -48,36 +46,40 @@ public class ControllerRegistro {
                 botonEnviarActionPerformed();
             }
         });
+
+        vistaRegistro.getBotonAtras().addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAtrasActionPerformed();
+            }
+        });
     }
 
     private void botonEnviarActionPerformed() {
-        if (vistaRegistro.getCajaCorreo().getText().length() > 0
+        if (vistaRegistro.getCajaNombre().getText().length() > 0
+                && vistaRegistro.getCajaCorreo().getText().length() > 0
                 && vistaRegistro.getCajaContrasena1().getPassword().length > 0
                 && Arrays.equals(vistaRegistro.getCajaContrasena1().getPassword(), (vistaRegistro.getCajaContrasena2().getPassword()))
                 && (vistaRegistro.getRadioBEstudiante().isSelected() || vistaRegistro.getRadioBTrabajador().isSelected())) {
             vistaRegistro.getLabelError().setText("");
-            String sql = "INSERT INTO usuario (correo, contrasena, ocupacion, contagio) VALUES (?, ?, ?, ?)";
-            try (PreparedStatement ps = Conexion.abrirConexion().prepareStatement(sql);) {
-                ps.setString(1, vistaRegistro.getCajaCorreo().getText());
-                ps.setString(2, String.valueOf(vistaRegistro.getCajaContrasena1().getPassword()));
-
-                String ocupacion = "";
-                if (vistaRegistro.getRadioBEstudiante().isSelected()) {
-                    ocupacion = "E";
-                } else if (vistaRegistro.getRadioBTrabajador().isSelected()) {
-                    ocupacion = "T";
-                }
-                ps.setString(3, ocupacion);
-                ps.setString(4, "N");
-                ps.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Se ha creado el nuevo usuario", "Operación realizada", JOptionPane.INFORMATION_MESSAGE);
-                vistaRegistro.dispose();
-                vistaPrinc = new Main();
-                controladorMain = new ControllerMain();
-                controladorMain.setVentanaInicio(vistaPrinc);
-            } catch (SQLException ex) {
-                Logger.getLogger(ControllerRegistro.class.getName()).log(Level.SEVERE, null, ex);
+            String ocupacion = "";
+            if (vistaRegistro.getRadioBEstudiante().isSelected()) {
+                ocupacion = "E";
+            } else if (vistaRegistro.getRadioBTrabajador().isSelected()) {
+                ocupacion = "T";
             }
+            Usuario usuario = new Usuario(vistaRegistro.getCajaNombre().getText(),
+                    vistaRegistro.getCajaCorreo().getText(),
+                    String.valueOf(vistaRegistro.getCajaContrasena1().getPassword()),
+                    ocupacion.charAt(0));
+            usuariosDAO.insert(usuario);
+            JOptionPane.showMessageDialog(null, "Se ha creado el nuevo usuario", "Operación realizada", JOptionPane.INFORMATION_MESSAGE);
+            vistaRegistro.dispose();
+            vistaPrinc = new Login();
+            controladorMain = new ControllerLogin();
+            controladorMain.setVentanaInicio(vistaPrinc);
+
+        } else if (vistaRegistro.getCajaNombre().getText().length() == 0) {
+            vistaRegistro.getLabelError().setText("Debes introducir un nombre.");
         } else if (vistaRegistro.getCajaCorreo().getText().length() == 0) {
             vistaRegistro.getLabelError().setText("Debes introducir un correo electrónico.");
         } else if (vistaRegistro.getCajaContrasena1().getPassword().length == 0) {
@@ -87,5 +89,12 @@ public class ControllerRegistro {
         } else if (!(vistaRegistro.getRadioBEstudiante().isSelected() || vistaRegistro.getRadioBTrabajador().isSelected())) {
             vistaRegistro.getLabelError().setText("Debes seleccionar una ocupación.");
         }
+    }
+
+    private void botonAtrasActionPerformed() {
+        vistaRegistro.dispose();
+        vistaPrinc = new Login();
+        controladorMain = new ControllerLogin();
+        controladorMain.setVentanaInicio(vistaPrinc);
     }
 }
