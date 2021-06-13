@@ -28,6 +28,10 @@ public class Login extends javax.swing.JFrame {
         return botonRegistrar;
     }
 
+    public JButton getBotonRegistrarCentro() {
+        return botonRegistrarCentro;
+    }
+
     public JPasswordField getCajaContrasena() {
         return cajaContrasena;
     }
@@ -56,6 +60,7 @@ public class Login extends javax.swing.JFrame {
         labelContra = new javax.swing.JLabel();
         labelImagen = new javax.swing.JLabel();
         labelError = new javax.swing.JLabel();
+        botonRegistrarCentro = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,12 +77,17 @@ public class Login extends javax.swing.JFrame {
         labelError.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         labelError.setForeground(new java.awt.Color(255, 0, 0));
 
+        botonRegistrarCentro.setText("Registrar centro de salud");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(153, 153, 153)
+                        .addComponent(labelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(101, 101, 101)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -88,14 +98,13 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(labelContra)
                             .addComponent(cajaContrasena)
                             .addComponent(labelCorreo)
-                            .addComponent(cajaCorreo)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addComponent(labelError, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(153, 153, 153)
-                        .addComponent(labelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(32, Short.MAX_VALUE))
+                            .addComponent(cajaCorreo)
+                            .addComponent(botonRegistrarCentro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 56, Short.MAX_VALUE)
+                .addComponent(labelError, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,8 +124,10 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(botonAcceder)
                     .addComponent(botonRegistrar))
                 .addGap(18, 18, 18)
+                .addComponent(botonRegistrarCentro)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelError, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
@@ -124,6 +135,7 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAcceder;
     private javax.swing.JButton botonRegistrar;
+    private javax.swing.JButton botonRegistrarCentro;
     private javax.swing.JPasswordField cajaContrasena;
     private javax.swing.JTextField cajaCorreo;
     private javax.swing.JLabel labelContra;

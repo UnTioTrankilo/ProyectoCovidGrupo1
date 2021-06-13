@@ -6,6 +6,8 @@
 package entornos.controller;
 
 import entornos.model.connection.Conexion;
+import entornos.model.dao.CentroSaludDAO;
+import entornos.model.entities.CentroSalud;
 import entornos.model.entities.Usuario;
 import entornos.view.Login;
 import entornos.view.Main;
@@ -16,6 +18,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,6 +28,8 @@ public class ControllerLogin {
 
     private Login vistaPrinc;
     private Registro vistaRegistro;
+    
+    private CentroSaludDAO centroSaludDAO = new CentroSaludDAO();
 
     private ControllerRegistro controladorRegistro = new ControllerRegistro();
     private String rutaImagen = ".//src//main//java//entornos//resources//PortadaNotificador.png";
@@ -59,6 +64,12 @@ public class ControllerLogin {
                 botonRegistrarActionPerformed();
             }
         });
+        
+        vistaPrinc.getBotonRegistrarCentro().addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRegistrarCentroActionPerformed();
+            }
+        });
     }
 
     private void botonAccederActionPerformed() {
@@ -69,6 +80,7 @@ public class ControllerLogin {
             if (rs.next()) {
                 if (rs.getString("contrasena").equals(String.valueOf(vistaPrinc.getCajaContrasena().getPassword()))) {
                     Usuario userLogin = new Usuario();
+                    userLogin.setId(rs.getInt(1));
                     userLogin.setNombreCompleto(rs.getString(2));
                     userLogin.setCorreo(rs.getString(3));
                     userLogin.setContrasena(rs.getString(4));
@@ -94,5 +106,18 @@ public class ControllerLogin {
         vistaRegistro = new Registro();
         controladorRegistro.setVentanaRegistro(vistaRegistro);
         vistaPrinc.dispose();
+    }
+    
+    private void botonRegistrarCentroActionPerformed(){
+        String password = JOptionPane.showInputDialog(null, "Introduce la contraseña de administrador", "Verificación", JOptionPane.INFORMATION_MESSAGE);
+        if(password.equals("admin")){
+            int id = Integer.parseInt(JOptionPane.showInputDialog(null, "Introduce el ID del centro de salud", "Nuevo centro de salud", JOptionPane.INFORMATION_MESSAGE));
+            String nombre = JOptionPane.showInputDialog(null, "Introduce el nombre del centro de salud", "Nuevo centro de salud", JOptionPane.INFORMATION_MESSAGE);
+            String direccion = JOptionPane.showInputDialog(null, "Introduce la dirección del centro de salud", "Nuevo centro de salud", JOptionPane.INFORMATION_MESSAGE);
+            CentroSalud centroSalud = new CentroSalud(id, nombre, direccion);
+            centroSaludDAO.insert(centroSalud);
+        } else {
+            
+        }
     }
 }

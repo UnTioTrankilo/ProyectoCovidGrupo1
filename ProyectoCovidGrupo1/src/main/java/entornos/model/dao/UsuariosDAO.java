@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  */
 public class UsuariosDAO {
 
-    public int insert(Usuario usuario) {
+    public void insert(Usuario usuario) {
         String sql = "INSERT INTO usuario (nombreCompleto, correo, contrasena, ocupacion, contagio) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement ps = Conexion.abrirConexion().prepareStatement(sql);) {
             ps.setString(1, usuario.getNombreCompleto());
@@ -32,16 +32,49 @@ public class UsuariosDAO {
         } catch (SQLException ex) {
             Logger.getLogger(ControllerRegistro.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return -1;
     }
 
-    public Usuario get(String correo) {
+    public void update(Usuario usuario, String update) {
+        String sql = "UPDATE usuario set contagio=? WHERE id=?";
+        try (PreparedStatement ps = Conexion.abrirConexion().prepareStatement(sql);) {
+            ps.setString(1, update);
+            ps.setInt(2, usuario.getId());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ControllerRegistro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public Usuario getByCorreo(String correo) {
         String sql = "SELECT * FROM usuario WHERE correo=?";
         try (PreparedStatement ps = Conexion.abrirConexion().prepareStatement(sql);) {
             ps.setString(1, correo);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 Usuario usuario = new Usuario();
+                usuario.setId(rs.getInt(1));
+                usuario.setNombreCompleto(rs.getString(2));
+                usuario.setCorreo(rs.getString(3));
+                usuario.setContrasena(rs.getString(4));
+                usuario.setOcupacion(rs.getString(5));
+                usuario.setContagio(rs.getString(6));
+                return usuario;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+        public Usuario getById(int id) {
+        String sql = "SELECT * FROM usuario WHERE id=?";
+        try (PreparedStatement ps = Conexion.abrirConexion().prepareStatement(sql);) {
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                Usuario usuario = new Usuario();
+                usuario.setId(rs.getInt(1));
                 usuario.setNombreCompleto(rs.getString(2));
                 usuario.setCorreo(rs.getString(3));
                 usuario.setContrasena(rs.getString(4));
