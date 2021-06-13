@@ -13,6 +13,7 @@ import entornos.view.Login;
  * @author Alberto
  */
 public class Application {
+
     public static void main(String[] args) {
         ControllerLogin controlador = new ControllerLogin();
         Login vista = new Login();

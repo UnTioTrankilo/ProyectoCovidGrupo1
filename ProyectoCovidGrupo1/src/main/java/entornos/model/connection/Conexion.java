@@ -14,7 +14,7 @@ import java.sql.SQLException;
  * @author Adolfo
  */
 public class Conexion {
-    
+
     private static Connection con;
     private static final String url = "jdbc:mysql://localhost:3306/notificador";
     private static final String username = "root";
@@ -23,5 +23,4 @@ public class Conexion {
     public static Connection abrirConexion() throws SQLException {
         return DriverManager.getConnection(url, username, password);
     }
-  
 }

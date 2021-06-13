@@ -6,12 +6,13 @@
 package entornos.controller;
 
 import entornos.model.connection.Conexion;
+import entornos.model.entities.Usuario;
 import entornos.view.Login;
+import entornos.view.Main;
 import entornos.view.Registro;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -24,7 +25,7 @@ public class ControllerLogin {
 
     private Login vistaPrinc;
     private Registro vistaRegistro;
-    
+
     private ControllerRegistro controladorRegistro = new ControllerRegistro();
     private String rutaImagen = ".//src//main//java//entornos//resources//PortadaNotificador.png";
 
@@ -45,29 +46,38 @@ public class ControllerLogin {
         vistaPrinc.getlabelImagen().setIcon(new ImageIcon(rutaImagen));
         configurarBotones();
     }
-    
-    private void configurarBotones(){
+
+    private void configurarBotones() {
         vistaPrinc.getBotonAcceder().addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAccederActionPerformed();
             }
         });
-        
+
         vistaPrinc.getBotonRegistrar().addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonRegistrarActionPerformed();
             }
         });
     }
-    
-    private void botonAccederActionPerformed() {                                         
+
+    private void botonAccederActionPerformed() {
         String sql = "SELECT * FROM usuario WHERE correo=?";
         try (PreparedStatement ps = Conexion.abrirConexion().prepareStatement(sql);) {
             ps.setString(1, vistaPrinc.getCajaCorreo().getText());
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                if (rs.getString("contrasena").equals(String.valueOf(vistaPrinc.getCajaContrasena().getPassword()))){
-                    System.out.println("wenaaa");
+                if (rs.getString("contrasena").equals(String.valueOf(vistaPrinc.getCajaContrasena().getPassword()))) {
+                    Usuario userLogin = new Usuario();
+                    userLogin.setNombreCompleto(rs.getString(2));
+                    userLogin.setCorreo(rs.getString(3));
+                    userLogin.setContrasena(rs.getString(4));
+                    userLogin.setOcupacion(rs.getString(5));
+                    userLogin.setContagio(rs.getString(6));
+                    ControllerMain controladorMain = new ControllerMain(userLogin);
+                    Main vistaMain = new Main();
+                    controladorMain.setVentanaMain(vistaMain);
+                    vistaPrinc.dispose();
                 } else {
                     vistaPrinc.getLabelError().setText("La contraseña que has introducido es incorrecta.");
                 }
@@ -78,9 +88,9 @@ public class ControllerLogin {
         } catch (SQLException ex) {
             Logger.getLogger(ControllerLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }  
-    
-    private void botonRegistrarActionPerformed() {    
+    }
+
+    private void botonRegistrarActionPerformed() {
         vistaRegistro = new Registro();
         controladorRegistro.setVentanaRegistro(vistaRegistro);
         vistaPrinc.dispose();

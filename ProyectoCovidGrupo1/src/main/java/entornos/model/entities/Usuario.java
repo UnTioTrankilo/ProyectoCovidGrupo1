@@ -15,8 +15,8 @@ public class Usuario {
     private String nombreCompleto;
     private String correo;
     private String contrasena;
-    private char ocupacion;
-    private char contagio;
+    private String ocupacion;
+    private String contagio;
 
     public int getId() {
         return id;
@@ -34,15 +34,39 @@ public class Usuario {
         return contrasena;
     }
 
-    public char getOcupacion() {
+    public String getOcupacion() {
         return ocupacion;
     }
 
-    public char getContagio() {
+    public String getContagio() {
         return contagio;
     }
 
-    public Usuario(String nombreCompleto, String correo, String contrasena, char ocupacion) {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    public void setOcupacion(String ocupacion) {
+        this.ocupacion = ocupacion;
+    }
+
+    public void setContagio(String contagio) {
+        this.contagio = contagio;
+    }
+
+    public Usuario(String nombreCompleto, String correo, String contrasena, String ocupacion) {
         this.nombreCompleto = nombreCompleto;
         this.correo = correo;
         this.contrasena = contrasena;

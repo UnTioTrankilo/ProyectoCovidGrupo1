@@ -70,7 +70,7 @@ public class ControllerRegistro {
             Usuario usuario = new Usuario(vistaRegistro.getCajaNombre().getText(),
                     vistaRegistro.getCajaCorreo().getText(),
                     String.valueOf(vistaRegistro.getCajaContrasena1().getPassword()),
-                    ocupacion.charAt(0));
+                    ocupacion);
             usuariosDAO.insert(usuario);
             JOptionPane.showMessageDialog(null, "Se ha creado el nuevo usuario", "Operación realizada", JOptionPane.INFORMATION_MESSAGE);
             vistaRegistro.dispose();
