@@ -7,8 +7,7 @@ package entornos.view;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.JList;
 
 /**
  *
@@ -20,100 +19,84 @@ public class Main extends javax.swing.JFrame {
         initComponents();
     }
 
-    public JButton getBotonAcceder() {
-        return botonAcceder;
+    public JButton getBotonContagio() {
+        return botonContagio;
     }
 
-    public JButton getBotonRegistrar() {
-        return botonRegistrar;
+    public JButton getBotonNotif() {
+        return botonNotif;
     }
 
-    public JPasswordField getCajaContrasena() {
-        return cajaContrasena;
+    public JLabel getLabelUsuario() {
+        return labelUsuario;
     }
 
-    public JTextField getCajaCorreo() {
-        return cajaCorreo;
-    }
-
-    public JLabel getlabelImagen() {
-        return labelImagen;
+    public JList<String> getListaNotif() {
+        return listaNotif;
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cajaCorreo = new javax.swing.JTextField();
-        cajaContrasena = new javax.swing.JPasswordField();
-        botonAcceder = new javax.swing.JButton();
-        botonRegistrar = new javax.swing.JButton();
-        labelCorreo = new javax.swing.JLabel();
-        labelContra = new javax.swing.JLabel();
-        labelImagen = new javax.swing.JLabel();
+        labelUsuario = new javax.swing.JLabel();
+        botonContagio = new javax.swing.JButton();
+        botonNotif = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listaNotif = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        botonAcceder.setText("Acceder");
+        labelUsuario.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        labelUsuario.setText("Usuario: ");
 
-        botonRegistrar.setText("Registrarse");
+        botonNotif.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        botonNotif.setText("!");
 
-        labelCorreo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        labelCorreo.setText("Correo electrónico:");
-
-        labelContra.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        labelContra.setText("Contraseña:");
+        jScrollPane1.setViewportView(listaNotif);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(101, 101, 101)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(botonAcceder)
-                            .addGap(18, 18, 18)
-                            .addComponent(botonRegistrar))
-                        .addComponent(labelContra)
-                        .addComponent(cajaContrasena)
-                        .addComponent(labelCorreo)
-                        .addComponent(cajaCorreo))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(labelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(108, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(labelUsuario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonNotif))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(144, 144, 144)
+                        .addComponent(botonContagio, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
-                .addComponent(labelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(labelCorreo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cajaCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(labelContra)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cajaContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonAcceder)
-                    .addComponent(botonRegistrar))
-                .addGap(36, 36, 36))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelUsuario)
+                        .addGap(102, 102, 102)
+                        .addComponent(botonContagio, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(botonNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonAcceder;
-    private javax.swing.JButton botonRegistrar;
-    private javax.swing.JPasswordField cajaContrasena;
-    private javax.swing.JTextField cajaCorreo;
-    private javax.swing.JLabel labelContra;
-    private javax.swing.JLabel labelCorreo;
-    private javax.swing.JLabel labelImagen;
+    private javax.swing.JButton botonContagio;
+    private javax.swing.JButton botonNotif;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelUsuario;
+    private javax.swing.JList<String> listaNotif;
     // End of variables declaration//GEN-END:variables
 }
