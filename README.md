@@ -1,5 +1,6 @@
 # ProyectoCovidGrupo1
 Repositorio del proyecto COVID grupo 1
-# integrantes:
+# Integrantes:
 # Alberto Perez
 # Adolfo Moro
+# Joz Azcorra
