@@ -1,7 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Práctica Final Entornos - 1º DAM
+ * Grupo 1
+ * Alberto Pérez Castañeda
+ * Adolfo Moro Adán
  */
 package entornos.view;
 
@@ -9,31 +10,63 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 /**
+ * Ventana que utiliza el Main. Se accede mediante una conexión correcta desde
+ * el login.
  *
  * @author Alberto
  */
 public class Main extends javax.swing.JFrame {
 
+    /**
+     * Constructor principal de la ventana Main. Hace una llamada al método
+     * intiComponents, el cual ajusta todos los elementos y los listener de la
+     * ventana.
+     */
     public Main() {
         initComponents();
     }
 
+    /**
+     * Método que devuelve el botón para avisar de un contagio.
+     *
+     * @return JButton
+     */
     public JButton getBotonContagio() {
         return botonContagio;
     }
 
+    /**
+     * Método que devuelve el botón para comprobar las notificaciones.
+     *
+     * @return JButton
+     */
     public JButton getBotonNotif() {
         return botonNotif;
     }
 
+    /**
+     * Método que devuelve el botón para desconectarse.
+     *
+     * @return JButton
+     */
     public JButton getBotonDesconect() {
         return botonDesconect;
     }
 
+    /**
+     * Método que devuelve el label con el nombre del usuario.
+     *
+     * @return JLabel
+     */
     public JLabel getLabelUsuario() {
         return labelUsuario;
     }
 
+    /**
+     * Método que devuelve el label con el estado del usuario.
+     *
+     * @return JLabel
+     */
     public JLabel getLabelEstado() {
         return labelEstado;
     }

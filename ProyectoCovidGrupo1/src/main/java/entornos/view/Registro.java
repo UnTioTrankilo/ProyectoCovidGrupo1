@@ -1,7 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Práctica Final Entornos - 1º DAM
+ * Grupo 1
+ * Alberto Pérez Castañeda
+ * Adolfo Moro Adán
  */
 package entornos.view;
 
@@ -12,47 +13,99 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 /**
+ * Ventana que utiliza el Registro. Se accede desde el login.
  *
  * @author Alberto
  */
 public class Registro extends javax.swing.JFrame {
 
+    /**
+     * Constructor principal de la ventana Registro. Hace una llamada al método
+     * intiComponents, el cual ajusta todos los elementos y los listener de la
+     * ventana.
+     */
     public Registro() {
         initComponents();
     }
 
+    /**
+     * Método que devuelve el botón para enviar los datos.
+     *
+     * @return JButton
+     */
     public JButton getBotonEnviar() {
         return botonEnviar;
     }
 
+    /**
+     * Método que devuelve el botón para retroceder al Login.
+     *
+     * @return JButton
+     */
     public JButton getBotonAtras() {
         return botonAtras;
     }
 
+    /**
+     * Método que devuelve la caja con los datos del nombre.
+     *
+     * @return JTextField
+     */
     public JTextField getCajaNombre() {
         return cajaNombre;
     }
 
+    /**
+     * Método que devuelve la caja con los datos del correo.
+     *
+     * @return JTextField
+     */
     public JTextField getCajaCorreo() {
         return cajaCorreo;
     }
 
+    /**
+     * Método que devuelve la caja con los datos de la contraseña.
+     *
+     * @return JPasswordField
+     */
     public JPasswordField getCajaContrasena1() {
         return cajaContrasena1;
     }
 
+    /**
+     * Método que devuelve la caja con los datos de la verificación de la
+     * contraseña.
+     *
+     * @return JPasswordField
+     */
     public JPasswordField getCajaContrasena2() {
         return cajaContrasena2;
     }
 
+    /**
+     * Método que devuelve el botón de estudiante.
+     *
+     * @return JRadioButton
+     */
     public JRadioButton getRadioBEstudiante() {
         return radioBEstudiante;
     }
 
+    /**
+     * Método que devuelve el botón de trabajador.
+     *
+     * @return JRadioButton
+     */
     public JRadioButton getRadioBTrabajador() {
         return radioBTrabajador;
     }
 
+    /**
+     * Método que devuelve el texto de error.
+     *
+     * @return JLabel
+     */
     public JLabel getLabelError() {
         return labelError;
     }

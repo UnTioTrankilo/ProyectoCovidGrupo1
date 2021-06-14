@@ -1,7 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Práctica Final Entornos - 1º DAM
+ * Grupo 1
+ * Alberto Pérez Castañeda
+ * Adolfo Moro Adán
  */
 package entornos.view;
 
@@ -11,39 +12,81 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 /**
+ * Ventana que utiliza el Login. Actúa como primera ventana, manejando el acceso
+ * a todas las demás.
  *
  * @author Alberto
  */
 public class Login extends javax.swing.JFrame {
 
+    /**
+     * Constructor principal de la ventana Login. Hace una llamada al método
+     * intiComponents, el cual ajusta todos los elementos y los listener de la
+     * ventana.
+     */
     public Login() {
         initComponents();
     }
 
+    /**
+     * Método que devuelve el botón para conectarse.
+     *
+     * @return JButton
+     */
     public JButton getBotonAcceder() {
         return botonAcceder;
     }
 
+    /**
+     * Método que devuelve el botón para registrarse.
+     *
+     * @return JButton
+     */
     public JButton getBotonRegistrar() {
         return botonRegistrar;
     }
 
+    /**
+     * Método que devuelve el botón para registrar un centro.
+     *
+     * @return JButton
+     */
     public JButton getBotonRegistrarCentro() {
         return botonRegistrarCentro;
     }
 
+    /**
+     * Método que devuelve la caja de la contraseña.
+     *
+     * @return JPasswordField
+     */
     public JPasswordField getCajaContrasena() {
         return cajaContrasena;
     }
 
+    /**
+     * Método que devuelve la caja del correo.
+     *
+     * @return JTextField
+     */
     public JTextField getCajaCorreo() {
         return cajaCorreo;
     }
 
+    /**
+     * Método que devuelve la etiqueta que contiene la imagen.
+     *
+     * @return JLabel
+     */
     public JLabel getlabelImagen() {
         return labelImagen;
     }
 
+    /**
+     * Método que devuelve la etiqueta que contiene el texto de error.
+     *
+     * @return JLabel
+     */
     public JLabel getLabelError() {
         return labelError;
     }

@@ -1,7 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Práctica Final Entornos - 1º DAM
+ * Grupo 1
+ * Alberto Pérez Castañeda
+ * Adolfo Moro Adán
  */
 package entornos.application;
 
@@ -10,13 +11,21 @@ import entornos.view.Login;
 
 /**
  *
+ * Clase Application que ejecuta y mueve el proyecto
+ *
  * @author Alberto
  */
 public class Application {
 
+    /**
+     * Método principal que se lanza al ejecutra el programa.Crea un controlador
+     * y una ventana Login, y adjudica esta ventana al controlador.
+     *
+     * @param args
+     */
     public static void main(String[] args) {
-        ControllerLogin controlador = new ControllerLogin();
+        ControllerLogin controladorLogin = new ControllerLogin();
         Login vista = new Login();
-        controlador.setVentanaInicio(vista);
+        controladorLogin.setVentanaInicio(vista);
     }
 }
